@@ -1,0 +1,70 @@
+using System;
+
+class Rhombus
+{
+    private double a, b; // діагоналі
+
+    public Rhombus(double a, double b)  // Конструктор з параметрами
+    {
+        this.a = a;
+        this.b = b;
+    }
+
+    public bool Correct()  // Логічний метод для перевірки існування ромба
+    {
+        return a > 0 && b > 0;
+    }
+
+    public double Area() // Метод обчислення площі ромба
+    {
+        return 0.5 * a * b;
+    }
+
+    public double Side()     // Метод обчислення сторони ромба
+    {
+        return Math.Sqrt((a * a + b * b) / 4);
+    }
+
+    public void Print()     // Метод для виведення значень полів на екран
+    {
+        Console.WriteLine($"Перша діагональ (a): {a}");
+        Console.WriteLine($"Друга діагональ (b): {b}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8; // Відображення "і" та "ї" на консолі
+
+        try
+        {
+            Console.Write("Введіть значення першої діагоналі (a): ");
+            double a = double.Parse(Console.ReadLine());
+
+            Console.Write("Введіть значення другої діагоналі (b): ");
+            double b = double.Parse(Console.ReadLine());
+
+            Rhombus rhombus = new Rhombus(a, b);
+
+            Console.WriteLine("Значення полів об'єкта:");
+            rhombus.Print();
+
+            if (rhombus.Correct())
+            {
+                Console.WriteLine($"Площа ромба: {rhombus.Area()}");
+                Console.WriteLine($"Сторона ромба: {rhombus.Side()}");
+            }
+            else
+            {
+                Console.WriteLine("Ромб існувати не може, оскільки одна з діагоналей має нульову або від'ємну довжину.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Помилка: {ex.Message}");
+        }
+    }
+
+}
